@@ -11,6 +11,12 @@ phases:
     commands:
       - echo Build completed
 
-artifacts:
-  files:
-    - '**/*'
+#artifacts:
+ # files:
+  #  - '**/*'
+phases:
+  build:
+    commands:
+      - echo "Deploying to S3"
+      - aws s3 sync . s3://new-lalitha-buc --delete
+      - aws cloudfront create-invalidation --E2ZOD15NSRBNYJ --paths "/*"
