@@ -3,20 +3,19 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Installing dependencies
+      - echo "Install phase"
+
   build:
     commands:
-      - echo Build started
+      - echo "Build phase"
+
   post_build:
     commands:
-      - echo Build completed
-
-#artifacts:
- # files:
-  #  - '**/*'
-phases:
-  build:
-    commands:
-      - echo "Deploying to S3"
-      - aws s3 sync . s3://new-lalitha-buc --delete
+      - echo "Deploying to S3..."
+      - aws s3 sync $CODEBUILD_SRC_DIR s3://new-lalitha-buc --delete
+      - echo "Creating CloudFront invalidation..."
       - aws cloudfront create-invalidation --distribution-id E2ZOD15NSRBNYJ --paths "/*"
+
+artifacts:
+  files:
+    - '**/*'
