@@ -19,4 +19,4 @@ phases:
     commands:
       - echo "Deploying to S3"
       - aws s3 sync . s3://new-lalitha-buc --delete
-      - aws cloudfront create-invalidation --E2ZOD15NSRBNYJ --paths "/*"
+      - aws cloudfront create-invalidation --distribution-id E2ZOD15NSRBNYJ --paths "/*"
