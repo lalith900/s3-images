@@ -12,7 +12,7 @@ phases:
   post_build:
     commands:
       - echo "Deploying to S3..."
-      - aws s3 sync $CODEBUILD_SRC_DIR s3://new-lalitha-buc --delete
+      - aws s3 sync $CODEBUILD_SRC_DIR s3://new-bec --delete
       - echo "Creating CloudFront invalidation..."
       - aws cloudfront create-invalidation --distribution-id E2ZOD15NSRBNYJ --paths "/*"
 
